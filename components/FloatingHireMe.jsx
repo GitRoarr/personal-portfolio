@@ -1,12 +1,12 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { useEffect, useMemo, useState } from "react"
+import { useTheme } from "@/contexts/ThemeContext"
 import { Sparkles, Heart, Star, Zap } from "lucide-react"
 
 export default function FloatingHireMe() {
   const [isHovered, setIsHovered] = useState(false)
   const [sparklePositions, setSparklePositions] = useState([])
+  const { isDark } = useTheme()
 
   useEffect(() => {
     const positions = Array.from({ length: 6 }, () => ({
@@ -30,6 +30,15 @@ export default function FloatingHireMe() {
       transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
     },
   }
+
+  const burstIcons = [
+    "https://img.icons8.com/fluency/48/briefcase.png",
+    "https://img.icons8.com/fluency/48/rocket.png",
+    "https://img.icons8.com/fluency/48/star.png",
+    "https://img.icons8.com/fluency/48/diamond.png",
+    "https://img.icons8.com/fluency/48/target.png",
+    "https://img.icons8.com/fluency/48/fire-element.png",
+  ]
 
   return (
     <motion.div
@@ -72,15 +81,27 @@ export default function FloatingHireMe() {
           whileHover={{
             scale: 1.1,
             rotate: [0, -5, 5, 0],
-            boxShadow: "0 20px 40px rgba(29, 185, 84, 0.4)",
+            boxShadow: isDark
+              ? "0 20px 40px rgba(29, 185, 84, 0.4)"
+              : "0 20px 40px rgba(0, 188, 212, 0.4)",
           }}
           whileTap={{ scale: 0.95 }}
           className="relative block"
         >
-          <div className="relative bg-spotify-green p-4 rounded-full shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+          <div
+            className={`relative ${
+              isDark
+                ? "bg-spotify-green"
+                : "bg-gradient-to-r from-cyan-500 to-purple-600"
+            } p-4 rounded-full shadow-2xl border-4 border-white/20 backdrop-blur-sm`}
+          >
             {/* Animated Background */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-green-400 via-spotify-green to-emerald-500 rounded-full opacity-0"
+              className={`absolute inset-0 rounded-full opacity-0 ${
+                isDark
+                  ? "bg-gradient-to-r from-green-400 via-spotify-green to-emerald-500"
+                  : "bg-gradient-to-r from-cyan-400 via-cyan-500 to-purple-600"
+              }`}
               animate={{
                 opacity: isHovered ? [0, 0.3, 0] : 0,
                 scale: isHovered ? [1, 1.2, 1] : 1,
@@ -136,12 +157,17 @@ export default function FloatingHireMe() {
             />
           </div>
 
+          {/* Icon Burst (replaced emojis) */}
           {isHovered && (
             <div className="absolute inset-0">
-              {["💼", "🚀", "⭐", "💎", "🎯", "🔥"].map((emoji, i) => (
-                <motion.div
+              {burstIcons.map((src, i) => (
+                <motion.img
                   key={i}
-                  className="absolute text-2xl"
+                  src={src}
+                  alt={`icon-${i}`}
+                  width={30}
+                  height={30}
+                  className="absolute"
                   initial={{ scale: 0, x: 0, y: 0 }}
                   animate={{
                     scale: [0, 1, 0],
@@ -149,14 +175,13 @@ export default function FloatingHireMe() {
                     y: Math.sin((i * 60 * Math.PI) / 180) * 60,
                   }}
                   transition={{ duration: 1.5, delay: i * 0.1 }}
-                >
-                  {emoji}
-                </motion.div>
+                />
               ))}
             </div>
           )}
         </motion.a>
 
+        {/* Tooltip */}
         <motion.div
           initial={{ opacity: 0, y: 10, scale: 0.8 }}
           animate={{
@@ -164,14 +189,24 @@ export default function FloatingHireMe() {
             y: isHovered ? -10 : 10,
             scale: isHovered ? 1 : 0.8,
           }}
-          className="absolute bottom-full  right-0 mb-4 bg-gray-900/90 text-white px-4 py-2 rounded-full text-sm whitespace-nowrap backdrop-blur-sm border border-white/20"
+          className={`absolute bottom-full right-0 mb-4 ${
+            isDark
+              ? "bg-gray-900/90 text-white"
+              : "bg-gray-100/90 text-gray-800"
+          } px-4 py-2 rounded-full text-sm whitespace-nowrap backdrop-blur-sm border ${
+            isDark ? "border-white/20" : "border-gray-200/50"
+          }`}
         >
           <div className="flex items-center rounded-full space-x-2">
             <Star className="text-yellow-400" size={16} />
             <span>Ready to create something amazing?</span>
             <Star className="text-yellow-400 fill-red" size={16} />
           </div>
-          <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900/90"></div>
+          <div
+            className={`absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+              isDark ? "border-t-gray-900/90" : "border-t-gray-100/90"
+            }`}
+          />
         </motion.div>
       </motion.div>
     </motion.div>

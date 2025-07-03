@@ -1,5 +1,3 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { useTheme } from "@/contexts/ThemeContext"
@@ -155,6 +153,7 @@ export default function HeroSection() {
                 { icon: "https://img.icons8.com/fluency/48/linkedin.png", href: "https://www.linkedin.com/in/girma-enkuchile-714725338/", label: "LinkedIn" },
                 { icon: "https://img.icons8.com/fluency/48/telegram-app.png", href: "https://t.me/mariamin211", label: "Telegram" },
                 { icon: "https://img.icons8.com/fluency/48/mail.png", href: "mailto:girmaenkuchille@gmail.com", label: "Email" },
+                { icon: "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-upwork-a-global-freelancing-platform-where-professionals-connect-and-collaborate-remotely-logo-shadow-tal-revivo.png", href: "https://www.upwork.com/freelancers/~01ab8a80d58924b591", label: "Upwork" },
               ].map((social, index) => (
                 <motion.a
                   key={index}

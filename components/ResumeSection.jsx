@@ -1,5 +1,3 @@
-"use client"
-
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { useTheme } from "@/contexts/ThemeContext"
@@ -143,7 +141,7 @@ export default function ResumeSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-6xl md:text-6xl font-bold mb-6 text-theme-gradient">My Resume</h2>
+          <h2 className={`text-6xl md:text-6xl font-bold mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>My Resume</h2>
 
           <motion.p
             className={`text-xl ${isDark ? "text-gray-300" : "text-gray-700"} max-w-2xl mx-auto mb-6`}

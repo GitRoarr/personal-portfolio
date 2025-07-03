@@ -1,5 +1,3 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import { useInView } from "framer-motion"
@@ -72,9 +70,9 @@ export default function ContactSection() {
   }
 
   const headerColor = isDark ? "white" : "#1E293B"
-  const btnBg = isDark ? "#1DB954" : "bg-gray-100"
-  const btnText = isDark ? "white" : "#1E293B"
-  const btnHoverBg = isDark ? "#17a74a" : "#d1d5db"
+  const btnBg = isDark ? "#1DB954" : "bg-gradient-to-r from-cyan-500 to-purple-600"
+  const btnText = isDark ? "white" : "#FFFFFF"
+  const btnHoverBg = isDark ? "#17a74a" : "from-cyan-600 to-purple-700"
 
   return (
     <section
@@ -291,18 +289,18 @@ export default function ContactSection() {
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   className={`w-full flex items-center justify-center space-x-2 px-8 py-4 font-semibold rounded-full transition-all duration-300
                     ${isDark
-                      ? "bg-spotify-green text-white hover:bg-green-800 focus:ring-4 focus:ring-spotify-green"
-                      : "bg-gray-100 border border-gray-300 text-gray-900 focus:border-purple-600 focus:ring-purple-600 hover:bg-gray-200"
+                      ? "bg-spotify-green text-white hover:bg-spotify-green/90 focus:ring-4 focus:ring-spotify-green"
+                      : "bg-gradient-to-r from-cyan-500 to-purple-600 text-white focus:ring-4 focus:ring-purple-600 hover:from-cyan-600 hover:to-purple-700"
                     }
                     ${isSubmitting || !formData.name || !formData.email || !formData.message
                       ? "opacity-50 cursor-not-allowed"
                       : "shadow-lg hover:shadow-xl"
                     }`}
                   onMouseEnter={e => {
-                    if (!isSubmitting && !isDark) e.currentTarget.style.backgroundColor = btnHoverBg
+                    if (!isSubmitting && !isDark) e.currentTarget.style.background = btnHoverBg
                   }}
                   onMouseLeave={e => {
-                    if (!isSubmitting && !isDark) e.currentTarget.style.backgroundColor = ""
+                    if (!isSubmitting && !isDark) e.currentTarget.style.background = ""
                   }}
                 >
                   {isSubmitting ? (

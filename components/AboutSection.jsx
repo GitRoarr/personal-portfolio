@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -66,37 +64,15 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2
-            className={`text-5xl font-extrabold mb-6 transition-colors duration-500 ${
-              isDark ? "text-white" : ""
-            }`}
-            style={{
-              backgroundImage: isDark
-                ? "none"
-                : "linear-gradient(to right, #9333ea, #d946ef)",
-              backgroundClip: isDark ? "inherit" : "text",
-              WebkitBackgroundClip: isDark ? "inherit" : "text",
-              color: isDark ? "white" : "transparent",
-            }}
-          >
-            About Me
-          </h2>
-
-          <div className="flex justify-center">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="h-1 w-40 rounded-full origin-left"
-              style={{
-                background: isDark
-                  ? "#1DB954"
-                  : "linear-gradient(to right, #9333ea, #d946ef)",
-              }}
-            />
-          </div>
+          <h2 className={`text-6xl md:text-6xl font-bold mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>About Me</h2>
+          <motion.div
+            className={`w-24 h-1 mx-auto rounded-full ${isDark ? "bg-green-500" : "bg-purple-500"}`}
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
