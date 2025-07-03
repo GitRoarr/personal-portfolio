@@ -17,15 +17,15 @@ export default function BlogSection() {
   const loadBlogs = async () => {
     try {
       const data = await blogService.getAll()
-      console.log("Fetched blogs data:", data)
+
       if (!Array.isArray(data)) {
         throw new Error("Invalid data format from blogService.getAll")
       }
+
       setBlogs(data)
       setError(null)
     } catch (error) {
-      console.error("Error loading blogs:", error)
-      setError("Failed to load blog posts. Please check your connection or try again later.")
+      setError(`Failed to load blog posts: ${error.message}`)
     } finally {
       setLoading(false)
     }
@@ -39,27 +39,31 @@ export default function BlogSection() {
   const formatDate = (date) => {
     if (!date) return "Recently"
 
-    if (date.toDate) {
-      return date.toDate().toLocaleDateString("en-US", {
+    try {
+      if (date.toDate) {
+        return date.toDate().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      }
+
+      if (date instanceof Date) {
+        return date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      }
+
+      return new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       })
+    } catch (error) {
+      return "Recently"
     }
-
-    if (date instanceof Date) {
-      return date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    }
-
-    return new Date(date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
   }
 
   const getReadingTime = (content) => {
@@ -104,7 +108,7 @@ export default function BlogSection() {
           >
             📝
           </motion.div>
-          <p className={`text-xl ${isDark ? "text-gray-400" : "text-gray-600"}`}>{error}</p>
+          <p className={`text-xl ${isDark ? "text-gray-400" : "text-gray-600"} mb-4`}>{error}</p>
           <motion.button
             onClick={loadBlogs}
             whileHover={{ scale: 1.05 }}
@@ -113,16 +117,64 @@ export default function BlogSection() {
               isDark ? "bg-green-500 text-black hover:bg-green-600" : "bg-purple-500 text-white hover:bg-purple-600"
             }`}
           >
-            Retry
+            Retry Loading Blogs
           </motion.button>
         </div>
       </section>
     )
   }
 
-  // Don't render the section if there are no blogs
   if (blogs.length === 0) {
-    return null
+    return (
+      <section className={`py-20 ${isDark ? "bg-black" : "bg-white"} transition-colors duration-500`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl font-extrabold mb-6 text-theme-gradient">Latest Blog Posts</h2>
+           <p className={`text-xl max-w-3xl mx-auto ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    Thoughts, tutorials, and insights on software, tech trends, and creative coding.
+            </p>
+
+            <div className="flex justify-center">
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="h-1 w-40 rounded-full origin-left bg-theme-gradient mt-6"
+              />
+            </div>
+          </motion.div>
+
+          <div className="text-center py-12">
+            <motion.div
+              animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              className="text-6xl mb-4"
+            >
+              📝
+            </motion.div>
+            <p className={`text-xl ${isDark ? "text-gray-400" : "text-gray-600"} mb-4`}>
+              No blog posts available yet. Check back soon for exciting content!
+            </p>
+            <motion.button
+              onClick={loadBlogs}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-3 font-medium rounded-lg transition-colors ${
+                isDark ? "bg-green-500 text-black hover:bg-green-600" : "bg-purple-500 text-white hover:bg-purple-600"
+              }`}
+            >
+              Reload Blogs
+            </motion.button>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   const featuredBlogs = blogs.filter((blog) => blog.featured)
@@ -134,7 +186,7 @@ export default function BlogSection() {
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -145,7 +197,7 @@ export default function BlogSection() {
           <div className="flex justify-center">
             <motion.div
               initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
+              animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="h-1 w-40 rounded-full origin-left bg-theme-gradient mt-6"
             />
@@ -157,7 +209,7 @@ export default function BlogSection() {
           <div className="mb-16">
             <motion.h3
               initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className={`text-2xl font-bold mb-8 ${isDark ? "text-white" : "text-gray-900"} flex items-center space-x-2`}
             >
@@ -170,11 +222,23 @@ export default function BlogSection() {
                 <motion.article
                   key={blog.id}
                   initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -10, scale: 1.02 }}
                   className={`${isDark ? "bg-gray-900/80" : "bg-white/90"} backdrop-blur-sm rounded-xl border ${isDark ? "border-gray-800" : "border-gray-200"} overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group`}
                 >
+                  {/* Featured Image */}
+                  {(blog.image || (blog.images && blog.images.length > 0)) && (
+                    <div className="relative overflow-hidden h-48">
+                      <img
+                        src={blog.image || blog.images?.[0] || "/placeholder.svg?height=200&width=400"}
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    </div>
+                  )}
+
                   <div className="p-8">
                     <div className="flex items-center justify-between mb-4">
                       <span
@@ -186,20 +250,20 @@ export default function BlogSection() {
                         className={`flex items-center space-x-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
                       >
                         <Calendar size={14} />
-                        <span>{formatDate(blog.publishedAt)}</span>
+                        <span>{formatDate(blog.publishedAt || blog.createdAt)}</span>
                       </div>
                     </div>
 
                     <h3
                       className={`text-2xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-900"} ${isDark ? "group-hover:text-green-500" : "group-hover:text-purple-500"} transition-colors line-clamp-2`}
                     >
-                      {blog.title}
+                      {blog.title || "Untitled Post"}
                     </h3>
 
                     <p
                       className={`${isDark ? "text-gray-300" : "text-gray-600"} mb-6 text-lg leading-relaxed line-clamp-3`}
                     >
-                      {blog.excerpt || truncateText(blog.content)}
+                      {blog.excerpt || truncateText(blog.content) || "No content available."}
                     </p>
 
                     {blog.tags && blog.tags.length > 0 && (
@@ -231,7 +295,7 @@ export default function BlogSection() {
                         </div>
                         <div className="flex items-center space-x-1">
                           <Clock size={14} />
-                          <span>{getReadingTime(blog.content)}</span>
+                          <span>{blog.readTime || getReadingTime(blog.content)}</span>
                         </div>
                       </div>
 
@@ -261,7 +325,7 @@ export default function BlogSection() {
             {featuredBlogs.length > 0 && (
               <motion.h3
                 initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className={`text-2xl font-bold mb-8 ${isDark ? "text-white" : "text-gray-900"} flex items-center space-x-2`}
               >
@@ -275,33 +339,45 @@ export default function BlogSection() {
                 <motion.article
                   key={blog.id}
                   initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: (featuredBlogs.length > 0 ? 0.4 : 0.2) + index * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                   className={`${isDark ? "bg-gray-900/80" : "bg-white/90"} backdrop-blur-sm rounded-xl border ${isDark ? "border-gray-800" : "border-gray-200"} overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group`}
                 >
+                  {/* Blog Image */}
+                  {(blog.image || (blog.images && blog.images.length > 0)) && (
+                    <div className="relative overflow-hidden h-40">
+                      <img
+                        src={blog.image || blog.images?.[0] || "/placeholder.svg?height=160&width=300"}
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </div>
+                  )}
+
                   <div className="p-6">
                     <div
                       className={`flex items-center justify-between mb-3 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
                     >
                       <div className="flex items-center space-x-1">
                         <Calendar size={12} />
-                        <span>{formatDate(blog.publishedAt)}</span>
+                        <span>{formatDate(blog.publishedAt || blog.createdAt)}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <Clock size={12} />
-                        <span>{getReadingTime(blog.content)}</span>
+                        <span>{blog.readTime || getReadingTime(blog.content)}</span>
                       </div>
                     </div>
 
                     <h3
                       className={`text-xl font-bold mb-3 ${isDark ? "text-white" : "text-gray-900"} ${isDark ? "group-hover:text-green-500" : "group-hover:text-purple-500"} transition-colors line-clamp-2`}
                     >
-                      {blog.title}
+                      {blog.title || "Untitled Post"}
                     </h3>
 
                     <p className={`${isDark ? "text-gray-300" : "text-gray-600"} mb-4 leading-relaxed line-clamp-3`}>
-                      {blog.excerpt || truncateText(blog.content)}
+                      {blog.excerpt || truncateText(blog.content) || "No content available."}
                     </p>
 
                     {blog.tags && blog.tags.length > 0 && (
@@ -350,11 +426,10 @@ export default function BlogSection() {
           </div>
         )}
 
-        {/* View All Blogs Button */}
         {blogs.length > 6 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-center mt-12"
           >

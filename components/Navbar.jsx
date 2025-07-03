@@ -246,7 +246,6 @@ export default function Navbar() {
                 )}
               </motion.button>
 
-              {/* Admin Panel Link */}
               {isAdmin && (
                 <motion.a
                   href="/admin"
@@ -259,7 +258,6 @@ export default function Navbar() {
                 </motion.a>
               )}
 
-              {/* Mobile Menu Button */}
               <div className="md:hidden">
                 <motion.button
                   onClick={() => setIsOpen(!isOpen)}
