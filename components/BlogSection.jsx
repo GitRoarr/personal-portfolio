@@ -323,7 +323,7 @@ export default function BlogSection() {
               width: 50px;
               height: 50px;
               border-radius: 50%;
-              background: linear-gradient(135deg, #22c55e, #16a34a);
+              background: linear-gradient(135deg, #ffffff, #9ca3af); 
               display: flex;
               align-items: center;
               justify-content: center;
@@ -454,17 +454,17 @@ export default function BlogSection() {
               ${
                 blog.category
                   ? `<div class="category-badge">
-                      <img src="https://img.icons8.com/fluency/16/folder.png" alt="Category" class="meta-icon" />
+                      <img src="https://img.icons8.com/pulsar-gradient/50/category.png" alt="Category" class="meta-icon" />
                       ${blog.category}
                     </div>`
-                  : '<div class="category-badge"><img src="https://img.icons8.com/fluency/16/blog.png" alt="Blog" class="meta-icon" />Blog Post</div>'
+                  : '<div class="category-badge"><img src="https://img.icons8.com/nolan/64/folder-invoices.png" alt="Blog" class="meta-icon" />Blog Post</div>'
               }
               
               <h1 class="title">${blog.title}</h1>
               
               <div class="meta">
                 <div class="meta-item">
-                  <img src="https://img.icons8.com/fluency/18/calendar.png" alt="Date" class="meta-icon" />
+                  <img src="https://img.icons8.com/color/48/calendar--v1.png" alt="Date" class="meta-icon" />
                   <span>${formatDate(blog.publishedAt || blog.createdAt)}</span>
                 </div>
                 <div class="meta-item">
@@ -472,7 +472,7 @@ export default function BlogSection() {
                   <span>${blog.author || "Girma Enkuchile"}</span>
                 </div>
                 <div class="meta-item">
-                  <img src="https://img.icons8.com/fluency/18/clock.png" alt="Reading time" class="meta-icon" />
+                  <img src="https://img.icons8.com/color/48/timer--v1.png" alt="Reading time" class="meta-icon" />
                   <span>${blog.readTime || getReadingTime(blog.content)}</span>
                 </div>
                 ${
@@ -548,7 +548,7 @@ export default function BlogSection() {
               </div>
               
               <p style="font-size: 0.9rem; opacity: 0.8;">
-                Thanks for reading! 🚀 Connect with me on 
+                Thanks for reading🙏 Connect with me on 
                 <a href="https://github.com/GitRoarr" target="_blank" style="color: #22c55e; text-decoration: none;">GitHub</a> or 
                 <a href="https://www.linkedin.com/in/girma-enkuchile-714725338/" target="_blank" style="color: #22c55e; text-decoration: none;">LinkedIn</a>
               </p>
