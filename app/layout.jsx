@@ -1,47 +1,77 @@
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider } from "../contexts/ThemeContext"
+import { AuthProvider } from "../contexts/AuthContext"
+import ErrorBoundary from "../components/ErrorBoundary"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Girma | Full Stack Developer Portfolio",
+  title: "Girma - Full Stack Developer",
   description:
-    "Explore the portfolio of Girma, a passionate Full Stack Developer skilled in React.js, Next.js, Node.js, and modern web technologies.",
-  keywords:
-    "Girma, Full Stack Developer, React Developer, Next.js Developer, Web Developer, Portfolio, JavaScript, Node.js, Firebase",
-  authors: [{ name: "Girma Enkuchile Belayhun", url: "https://github.com/GitRoarr" }],
-  creator: "Girma Enkuchile Belayhun",
+    "Professional portfolio of Girma, a skilled full-stack developer specializing in modern web technologies.",
+  keywords: "full stack developer, web developer, React, Next.js, Node.js, portfolio",
+  authors: [{ name: "Girma" }],
+  creator: "Girma",
   publisher: "Girma",
+  metadataBase: new URL("https://codegirma.com"),
   openGraph: {
-    title: "Girma | Full Stack Developer",
+    title: "Girma - Full Stack Developer",
     description:
-      "portfolio of Girma showcasing modern full stack web development projects using React, Next.js, Node.js, and more.",
-    url: "https://your-firebase-hosting-url.web.app", // Replace with your actual hosted URL
+      "Professional portfolio of Girma, a skilled full-stack developer specializing in modern web technologies.",
+    url: "https://codegirma.com",
     siteName: "Girma Portfolio",
-    type: "website",
-    locale: "en_US",
     images: [
       {
-        url: "https://your-firebase-hosting-url.web.app/og-image.png", // Optional OG image
+        url: "/me.jpg",
         width: 1200,
         height: 630,
-        alt: "Girma Portfolio Preview",
+        alt: "Girma - Full Stack Developer",
       },
     ],
+    locale: "en_US",
+    type: "website",
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+  twitter: {
+    card: "summary_large_image",
+    title: "Girma - Full Stack Developer",
+    description:
+      "Professional portfolio of Girma, a skilled full-stack developer specializing in modern web technologies.",
+    images: ["/me.jpg"],
   },
-  generator: "Next.js v13 + Firebase Hosting",
-  metadataBase: new URL("https://your-firebase-hosting-url.web.app"), // important for canonical links
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
+      <body className={inter.className} suppressHydrationWarning>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </ThemeProvider>
+        </ErrorBoundary>
+      </body>
     </html>
   )
 }
