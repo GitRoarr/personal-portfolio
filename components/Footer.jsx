@@ -9,6 +9,8 @@ export default function Footer() {
   const { isDark } = useTheme()
   const { isAdmin } = useAuth()
   const controls = useAnimation()
+  const currentYear = new Date().getFullYear()
+
 
   const [symbolPositions, setSymbolPositions] = useState([])
   const [dotPositions, setDotPositions] = useState([])
@@ -313,22 +315,17 @@ export default function Footer() {
           className={`border-t border-gray-800 pt-8`}
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
-              <img
-                src="https://img.icons8.com/fluency/24/copy.png"
-                alt="Copy Icon"
-                width={18}
-                height={18}
-                className="opacity-70"
-              />
-              <motion.span
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="text-lg"
-              ></motion.span>
-              <p className={`text-gray-400 text-sm`}>2024 Girma Enkuchile. All rights reserved.</p>
-            </motion.div>
-
+           <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
+   
+      <motion.span
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        className="text-lg"
+      ></motion.span>
+      <p className="text-gray-400 text-sm">
+        © 2022{currentYear > 2022 ? ` - ${currentYear}` : ""} Girma Enkuchile. All rights reserved.
+      </p>
+    </motion.div>
             <div className="w-full flex justify-center mb-4">
               <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
                 <span className={`text-sm text-gray-400`}>Made with</span>
@@ -342,16 +339,21 @@ export default function Footer() {
                   <span className="text-ellipsis">💖</span>
                 </motion.div>
                 <span className={`text-sm text-gray-400`}>and</span>
-                <motion.div
-                  animate={{
-                    y: [0, -3, 0],
-                    z: [0, 30, 0],
-                    rotate: [0, 10, -10, 0],
-                  }}
-                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                >
-                  <span className="text-lg">☕</span>
-                </motion.div>
+               <motion.div
+  animate={{
+    y: [0, -10, 0, -5, 0],
+    rotate: [0, -15, 15, -10, 0],
+    scale: [1, 1.05, 1],
+  }}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+>
+  <span className="text-lg">☕</span>
+</motion.div>
+
                 <span className={`text-sm text-gray-400`}>in Addis Ababa</span>
                 <motion.span
                   animate={{ scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] }}
