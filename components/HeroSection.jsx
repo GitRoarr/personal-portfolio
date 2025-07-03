@@ -141,7 +141,6 @@ export default function HeroSection() {
 </motion.div>
 
 
-            {/* Social Links */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

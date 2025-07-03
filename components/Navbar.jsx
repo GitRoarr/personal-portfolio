@@ -251,7 +251,7 @@ export default function Navbar() {
                   href="/admin"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center space-x-2 px-4 py-2 bg-theme-primary text-white rounded-lg transition-colors"
+                  className="flex items-center space-x-2 px-4 py-2 bg-theme-primary text-white rounded-2xl transition-colors"
                 >
                   <img src="https://img.icons8.com/fluency/48/settings.png" alt="Settings" width={16} height={16} />
                   <span>Admin Panel</span>
