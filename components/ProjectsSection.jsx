@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { useTheme } from "@/contexts/ThemeContext"
@@ -107,8 +109,8 @@ export default function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className={`py-20 ${isDark ? "bg-black" : "bg-gray-50/30"} backdrop-blur-sm`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className={`py-20 ${isDark ? "bg-black" : "bg-gray-50/30"} backdrop-blur-sm min-h-screen`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -164,7 +166,7 @@ export default function ProjectsSection() {
           </motion.div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
           {filteredProjects.length === 0 ? (
             <div className="col-span-full text-center py-12">
               <motion.div
@@ -188,15 +190,15 @@ export default function ProjectsSection() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -10, scale: 1.02 }}
-                  className={`${isDark ? "bg-gray-900/80" : "bg-white/90"} backdrop-blur-sm rounded-xl border ${isDark ? "bg-gray-800" : "border-gray-200"} overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group`}
+                  className={`${isDark ? "bg-gray-900/80" : "bg-white/90"} backdrop-blur-sm rounded-xl border ${isDark ? "border-gray-800" : "border-gray-200"} overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group h-full flex flex-col`}
                 >
                   <div className="relative overflow-hidden">
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-64">
                       <motion.img
                         key={currentImageIndex}
                         src={images[currentImageIndex]}
                         alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                         initial={{ opacity: 0, scale: 1.1 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
@@ -250,32 +252,32 @@ export default function ProjectsSection() {
                     )}
                   </div>
 
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="p-8 flex-1 flex flex-col">
+                    <div className="flex items-center justify-between mb-4">
                       <h3
-                        className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"} ${
+                        className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"} ${
                           isDark ? "group-hover:text-green-500" : "group-hover:text-purple-500"
                         } transition-colors`}
                       >
                         {project.title || "Untitled Project"}
                       </h3>
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${isDark ? "bg-gray-800 text-gray-300" : "bg-gray-100 text-gray-700"}`}
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${isDark ? "bg-gray-800 text-gray-300" : "bg-gray-100 text-gray-700"}`}
                       >
                         {project.category || "Uncategorized"}
                       </span>
                     </div>
 
-                    <p className={`${isDark ? "text-gray-300" : "text-gray-600"} mb-4 line-clamp-3`}>
+                    <p className={`${isDark ? "text-gray-300" : "text-gray-600"} mb-6 text-lg leading-relaxed flex-1`}>
                       {project.description || "No description available."}
                     </p>
 
                     {project.technologies && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.technologies.slice(0, 6).map((tech, techIndex) => (
                           <span
                             key={techIndex}
-                            className={`px-2 py-1 rounded-full text-xs font-medium border transition-colors ${
+                            className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
                               isDark
                                 ? "bg-green-500/20 text-green-400 border-green-500/30"
                                 : "bg-purple-500/10 text-purple-600 border-purple-500/30"
@@ -284,15 +286,15 @@ export default function ProjectsSection() {
                             {tech}
                           </span>
                         ))}
-                        {project.technologies.length > 4 && (
-                          <span className={`px-2 py-1 rounded text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                            +{project.technologies.length - 4} more
+                        {project.technologies.length > 6 && (
+                          <span className={`px-3 py-1 rounded text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                            +{project.technologies.length - 6} more
                           </span>
                         )}
                       </div>
                     )}
 
-                    <div className="flex gap-3">
+                    <div className="flex gap-4 mt-auto">
                       {project.liveUrl && (
                         <motion.a
                           href={project.liveUrl}
@@ -300,17 +302,16 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-full shadow-lg transition-all duration-300 text-white font-medium ${
+                          className={`flex items-center justify-center space-x-2 px-6 py-3 rounded-full shadow-lg transition-all duration-300 text-white font-medium flex-1 ${
                             isDark
                               ? "bg-spotify-green hover:bg-spotify-green/90"
                               : "bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700"
                           }`}
                         >
-                          <Eye size={16} />
+                          <Eye size={18} />
                           <span>Live Demo</span>
                         </motion.a>
                       )}
-
                       {project.githubUrl && (
                         <motion.a
                           href={project.githubUrl}
@@ -318,13 +319,13 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-full shadow-lg transition-all duration-300 text-white font-medium ${
+                          className={`flex items-center justify-center space-x-2 px-6 py-3 rounded-full shadow-lg transition-all duration-300 text-white font-medium flex-1 ${
                             isDark
                               ? "bg-spotify-green hover:bg-spotify-green/90"
                               : "bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700"
                           }`}
                         >
-                          <Github size={16} />
+                          <Github size={18} />
                           <span>GitHub</span>
                         </motion.a>
                       )}
