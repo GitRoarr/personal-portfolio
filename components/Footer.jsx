@@ -69,6 +69,11 @@ export default function Footer() {
     { name: "About", href: "#about", icon: "👨‍💻" },
     { name: "Skills", href: "#skills", icon: "https://img.icons8.com/fluency/90/admin-settings-male--v1.png" },
     { name: "Projects", href: "#projects", icon: "https://img.icons8.com/nolan/90/group-of-projects.png" },
+     {
+      name: "Blog",
+      href: "#blog",
+      icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blog-J1chjvAMuLcgsD1iA30IGZay078sxw.png",
+    },
     { name: "Contact", href: "#contact", icon: "https://img.icons8.com/color/90/contact-card.png" },
   ]
 
@@ -134,7 +139,7 @@ export default function Footer() {
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
                 >
-                  Crafting Digital Experiences ✨
+                  Crafting Digital Experiences 
                 </motion.p>
               </div>
             </motion.div>
@@ -161,7 +166,7 @@ export default function Footer() {
                 }}
                 transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
               >
-                <span className="text-2xl">📍</span>
+                <span className="text-1xl"><img width="48" height="48" src="https://img.icons8.com/color/48/marker--v1.png" alt="marker--v1"/></span>
               </motion.div>
               <span className="font-medium">Addis Ababa, Ethiopia</span>
               <motion.span
