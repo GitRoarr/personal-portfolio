@@ -1,31 +1,31 @@
-"use client";
+"use client"
 
-import { motion, useAnimation } from "framer-motion";
-import { useTheme } from "@/contexts/ThemeContext";
-import { useAuth } from "@/contexts/AuthContext";
-import { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion"
+import { useTheme } from "@/contexts/ThemeContext"
+import { useAuth } from "@/contexts/AuthContext"
+import { useEffect, useState } from "react"
 
 export default function Footer() {
-  const { isDark } = useTheme();
-  const { isAdmin } = useAuth();
-  const controls = useAnimation();
+  const { isDark } = useTheme()
+  const { isAdmin } = useAuth()
+  const controls = useAnimation()
 
-  const [symbolPositions, setSymbolPositions] = useState([]);
-  const [dotPositions, setDotPositions] = useState([]);
+  const [symbolPositions, setSymbolPositions] = useState([])
+  const [dotPositions, setDotPositions] = useState([])
 
   useEffect(() => {
     const newSymbolPositions = ["{}", "[]", "()", "</>", "&&", "||", "=>", "++"].map(() => ({
       x: Math.random() * 1200,
       y: Math.random() * 400,
       rotate: Math.random() * 360,
-    }));
-    setSymbolPositions(newSymbolPositions);
+    }))
+    setSymbolPositions(newSymbolPositions)
 
     const newDotPositions = [...Array(15)].map(() => ({
       x: Math.random() * 1200,
       y: Math.random() * 400,
-    }));
-    setDotPositions(newDotPositions);
+    }))
+    setDotPositions(newDotPositions)
 
     controls.start((i) => ({
       x: Math.random() * 1200,
@@ -33,11 +33,11 @@ export default function Footer() {
       rotate: 360,
       transition: {
         duration: 20 + i * 5,
-        repeat: Infinity,
+        repeat: Number.POSITIVE_INFINITY,
         ease: "linear",
       },
-    }));
-  }, [controls]);
+    }))
+  }, [controls])
 
   const socialLinks = [
     {
@@ -60,7 +60,7 @@ export default function Footer() {
       href: "mailto:girmaenkuchille@gmail.com",
       label: "Email",
     },
-  ];
+  ]
 
   const quickLinks = [
     { name: "Home", href: "#home", icon: "https://img.icons8.com/fluency/90/home.png" },
@@ -68,23 +68,17 @@ export default function Footer() {
     { name: "Skills", href: "#skills", icon: "https://img.icons8.com/fluency/90/admin-settings-male--v1.png" },
     { name: "Projects", href: "#projects", icon: "https://img.icons8.com/nolan/90/group-of-projects.png" },
     { name: "Contact", href: "#contact", icon: "https://img.icons8.com/color/90/contact-card.png" },
-  ];
+  ]
 
   return (
-    <footer
-      className={`relative overflow-hidden ${
-        isDark ? "bg-gray-900" : "bg-gray-100"
-      } border-t ${isDark ? "border-gray-800" : "border-gray-200"}`}
-    >
+    <footer className={`relative overflow-hidden bg-gray-900 border-t border-gray-800`}>
       <div className="absolute inset-0 overflow-hidden">
         {["{}", "[]", "()", "</>", "&&", "||", "=>", "++"].map((symbol, index) => (
           <motion.div
             key={symbol}
             custom={index}
             animate={controls}
-            className={`absolute text-6xl font-mono ${
-              isDark ? "text-gray-800/20" : "text-gray-300/30"
-            } select-none`}
+            className={`absolute text-6xl font-mono text-gray-800/20 select-none`}
             initial={symbolPositions[index] || { x: 0, y: 0, rotate: 0 }}
           >
             {symbol}
@@ -93,9 +87,7 @@ export default function Footer() {
         {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-2 h-2 ${
-              isDark ? "bg-spotify-green/30" : "bg-primary-purple/30"
-            } rounded-full`}
+            className={`absolute w-2 h-2 bg-spotify-green/30 rounded-full`}
             initial={dotPositions[i] || { x: 0, y: 0 }}
             animate={{
               x: Math.random() * 1200,
@@ -105,7 +97,7 @@ export default function Footer() {
             }}
             transition={{
               duration: Math.random() * 15 + 10,
-              repeat: Infinity,
+              repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
             }}
           />
@@ -128,17 +120,17 @@ export default function Footer() {
                   scale: [1, 1.2, 1],
                 }}
                 transition={{
-                  rotate: { duration: 10, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 2, repeat: Infinity },
+                  rotate: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                  scale: { duration: 2, repeat: Number.POSITIVE_INFINITY },
                 }}
                 className="text-3xl"
               ></motion.div>
               <div>
                 <h3 className="text-3xl font-bold text-theme-gradient">Girma.dev</h3>
                 <motion.p
-                  className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
+                  className={`text-sm text-gray-400`}
                   animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
                 >
                   Crafting Digital Experiences ✨
                 </motion.p>
@@ -146,23 +138,18 @@ export default function Footer() {
             </motion.div>
 
             <motion.p
-              className={`${isDark ? "text-gray-300" : "text-gray-700"} leading-relaxed mb-6 text-lg`}
+              className={`text-gray-300 leading-relaxed mb-6 text-lg`}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
               Full-stack developer from{" "}
-              <span
-                className={`${isDark ? "text-spotify-green" : "text-primary-purple"} font-semibold`}
-              >
-                Addis Ababa, Ethiopia
-              </span>{" "}
-              🇪🇹 passionate about creating beautiful, functional web applications that make a
-              difference.
+              <span className={`text-spotify-green font-semibold`}>Addis Ababa, Ethiopia</span> 🇪🇹 passionate about
+              creating beautiful, functional web applications that make a difference.
             </motion.p>
 
             <motion.div
-              className={`flex items-center space-x-3 ${isDark ? "text-gray-400" : "text-gray-600"} mb-6`}
+              className={`flex items-center space-x-3 text-gray-400 mb-6`}
               whileHover={{ scale: 1.05, x: 10 }}
             >
               <motion.div
@@ -170,7 +157,7 @@ export default function Footer() {
                   y: [0, -5, 0],
                   rotate: [0, 10, -10, 0],
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
               >
                 <span className="text-2xl">📍</span>
               </motion.div>
@@ -180,7 +167,7 @@ export default function Footer() {
                   scale: [1, 1.2, 1],
                   rotate: [0, 360],
                 }}
-                transition={{ duration: 4, repeat: Infinity }}
+                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
                 className="text-2xl"
               >
                 🇪🇹
@@ -188,9 +175,7 @@ export default function Footer() {
             </motion.div>
 
             <div className="mb-6">
-              <h4
-                className={`font-semibold ${isDark ? "text-white" : "text-gray-900"} mb-3 flex items-center space-x-2`}
-              ></h4>
+              <h4 className={`font-semibold text-white mb-3 flex items-center space-x-2`}></h4>
             </div>
           </motion.div>
 
@@ -200,9 +185,7 @@ export default function Footer() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3
-              className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6 flex items-center space-x-2`}
-            >
+            <h3 className={`text-xl font-bold text-white mb-6 flex items-center space-x-2`}>
               <span>Quick Links</span>
             </h3>
             <div className="space-y-3">
@@ -215,18 +198,16 @@ export default function Footer() {
                   whileHover={{
                     scale: 1.05,
                     x: 10,
-                    color: isDark ? "#1DB954" : "#8b5cf6",
+                    color: "#1DB954",
                   }}
                   transition={{ delay: index * 0.1 }}
-                  className={`flex items-center space-x-3 ${
-                    isDark ? "text-gray-400 hover:text-spotify-green" : "text-gray-600 hover:text-primary-purple"
-                  } transition-all duration-300 group`}
+                  className={`flex items-center space-x-3 text-gray-400 hover:text-spotify-green transition-all duration-300 group`}
                 >
                   {link.name === "About" ? (
                     <span className="text-lg">{link.icon}</span>
                   ) : (
                     <img
-                      src={link.icon}
+                      src={link.icon || "/placeholder.svg"}
                       alt={link.name}
                       width={16}
                       height={16}
@@ -245,9 +226,7 @@ export default function Footer() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <h3
-              className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6 flex items-center space-x-2`}
-            >
+            <h3 className={`text-xl font-bold text-white mb-6 flex items-center space-x-2`}>
               <span className="text-xl">💖</span>
               <span>Let's Connect</span>
             </h3>
@@ -264,30 +243,22 @@ export default function Footer() {
                   whileHover={{
                     scale: 1.1,
                     y: -5,
-                    boxShadow: `0 15px 30px ${
-                      isDark ? "rgba(29, 185, 84, 0.4)" : "rgba(139, 92, 246, 0.4)"
-                    }`,
+                    boxShadow: `0 15px 30px rgba(29, 185, 84, 0.4)`,
                   }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ delay: index * 0.1 }}
-                  className={`relative group flex flex-col items-center p-4 ${
-                    isDark ? "bg-gray-800/50 hover:bg-gray-700/50" : "bg-white/50 hover:bg-gray-50"
-                  } backdrop-blur-sm rounded-xl border ${
-                    isDark ? "border-gray-700" : "border-gray-300"
-                  } transition-all duration-300`}
+                  className={`relative group flex flex-col items-center p-4 bg-gray-800/50 hover:bg-gray-700/50 backdrop-blur-sm rounded-xl border border-gray-700 transition-all duration-300`}
                   title={social.label}
                 >
                   <motion.div
-                    className={`absolute inset-0 ${
-                      isDark ? "bg-spotify-green/20" : "bg-primary-purple/20"
-                    } rounded-xl opacity-0 group-hover:opacity-100`}
+                    className={`absolute inset-0 bg-spotify-green/20 rounded-xl opacity-0 group-hover:opacity-100`}
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
                   />
 
                   <img
-                    src={social.icon}
+                    src={social.icon || "/placeholder.svg"}
                     alt={social.label}
                     width={24}
                     height={24}
@@ -295,9 +266,7 @@ export default function Footer() {
                   />
 
                   <span
-                    className={`relative z-10 text-xs font-medium mt-2 ${
-                      isDark ? "text-gray-400" : "text-gray-600"
-                    } ${isDark ? "group-hover:text-spotify-green" : "group-hover:text-primary-purple"} transition-colors`}
+                    className={`relative z-10 text-xs font-medium mt-2 text-gray-400 group-hover:text-spotify-green transition-colors`}
                   >
                     {social.label}
                   </span>
@@ -306,9 +275,7 @@ export default function Footer() {
             </div>
 
             <motion.div
-              className={`p-4 ${isDark ? "bg-gray-800/30" : "bg-white/30"} backdrop-blur-sm rounded-xl border ${
-                isDark ? "border-gray-700" : "border-gray-300"
-              }`}
+              className={`p-4 bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-700`}
               whileHover={{ scale: 1.02 }}
             >
               <div className="flex items-center space-x-3">
@@ -317,7 +284,7 @@ export default function Footer() {
                     scale: [1, 1.2, 1],
                     opacity: [0.5, 1, 0.5],
                   }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   className="w-3 h-3 bg-green-400 rounded-full"
                 />
                 <div className="flex items-center space-x-1">
@@ -329,12 +296,8 @@ export default function Footer() {
                     className="opacity-70"
                   />
                   <div>
-                    <p className={`text-sm font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
-                      Available for work
-                    </p>
-                    <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                      Open to exciting projects!
-                    </p>
+                    <p className={`text-sm font-medium text-white`}>Available for work</p>
+                    <p className={`text-xs text-gray-400`}>Open to exciting projects!</p>
                   </div>
                 </div>
               </div>
@@ -347,7 +310,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className={`border-t ${isDark ? "border-gray-800" : "border-gray-200"} pt-8`}
+          className={`border-t border-gray-800 pt-8`}
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
@@ -360,37 +323,39 @@ export default function Footer() {
               />
               <motion.span
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="text-lg"
               ></motion.span>
-              <p className={`${isDark ? "text-gray-400" : "text-gray-600"} text-sm`}>
-                2024 Girma Enkuchile. All rights reserved.
-              </p>
+              <p className={`text-gray-400 text-sm`}>2024 Girma Enkuchile. All rights reserved.</p>
             </motion.div>
 
             <div className="w-full flex justify-center mb-4">
               <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Made with</span>
+                <span className={`text-sm text-gray-400`}>Made with</span>
                 <motion.div
                   animate={{ scale: [1, 1.3, 1], rotate: [0, 360] }}
-                  transition={{ scale: { duration: 1, repeat: Infinity }, rotate: { duration: 2, repeat: Infinity } }}
+                  transition={{
+                    scale: { duration: 1, repeat: Number.POSITIVE_INFINITY },
+                    rotate: { duration: 2, repeat: Number.POSITIVE_INFINITY },
+                  }}
                 >
                   <span className="text-ellipsis">💖</span>
                 </motion.div>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>and</span>
+                <span className={`text-sm text-gray-400`}>and</span>
                 <motion.div
                   animate={{
-                  y: [0, -3, 0],
-                  z: [0, 30, 0], 
-                  rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                    y: [0, -3, 0],
+                    z: [0, 30, 0],
+                    rotate: [0, 10, -10, 0],
+                  }}
+                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 >
                   <span className="text-lg">☕</span>
                 </motion.div>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>in Addis Ababa</span>
+                <span className={`text-sm text-gray-400`}>in Addis Ababa</span>
                 <motion.span
                   animate={{ scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
                   className="text-lg"
                 >
                   🇪🇹
@@ -403,26 +368,20 @@ export default function Footer() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
-                className={`flex items-center space-x-2 px-3 py-1 ${
-                  isDark ? "bg-spotify-green/20 border-spotify-green/30" : "bg-primary-purple/20 border-primary-purple/30"
-                } rounded-full border`}
+                className={`flex items-center space-x-2 px-3 py-1 bg-spotify-green/20 border-spotify-green/30 rounded-full border`}
               >
-                <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }}>
-                  <img
-                    src="https://img.icons8.com/fluency/48/star.png"
-                    alt="Admin"
-                    width={14}
-                    height={14}
-                  />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                >
+                  <img src="https://img.icons8.com/fluency/48/star.png" alt="Admin" width={14} height={14} />
                 </motion.div>
-                <span className={`${isDark ? "text-spotify-green" : "text-primary-purple"} text-xs font-bold`}>
-                  ADMIN LOGGED IN
-                </span>
+                <span className={`text-spotify-green text-xs font-bold`}>ADMIN LOGGED IN</span>
               </motion.div>
             )}
           </div>
         </motion.div>
       </div>
     </footer>
-  );
+  )
 }

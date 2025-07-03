@@ -66,28 +66,25 @@ export default function HeroSection() {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="mb-8"
             >
-     <div className={`text-2xl md:text-4xl ${isDark ? "text-white" : "text-gray-900"} mb-4`}>
-  <TypeAnimation
-    sequence={[
-      `<img src="https://img.icons8.com/fluency/48/source-code.png" width="30" class="inline" /> Web Developer`, 2000,
-      `<img src="https://img.icons8.com/fluency/48/cloud-development.png" width="30" class="inline" /> Full Stack Engineer`, 2000,
-      `<img src="https://img.icons8.com/fluency/48/android.png" width="30" class="inline" /> Mobile App Developer`, 2000,
-      `<img src="https://img.icons8.com/color/48/react-native.png" width="30" class="inline" /> React & Next.js Expert`, 2000,
-      `<img src="https://img.icons8.com/fluency/48/server.png" width="30" class="inline" /> Backend Developer (Node.js)`, 2000,
-      `<img src="https://img.icons8.com/color/48/firebase.png" width="30" class="inline" /> Firebase & MongoDB Specialist`, 2000,
-      `<img src="https://img.icons8.com/color/48/design.png" width="30" class="inline" /> UI/UX Focused Developer`, 2000,
-      `<img src="https://img.icons8.com/color/48/connected.png" width="30" class="inline" /> Cross-Platform App Creator`, 2000,
-      `<img src="https://img.icons8.com/fluency/48/lightning-bolt.png" width="30" class="inline" /> Performance Optimizer`, 2000,
-      `<img src="https://img.icons8.com/fluency/48/handshake.png" width="30" class="inline" /> Reliable Freelance Partner`, 2000,
-    ]}
-    wrapper="span"
-    speed={50}
-    repeat={Infinity}
-    preRenderFirstString={true}
-  />
-</div>
-
-
+              <div className={`text-2xl md:text-4xl ${isDark ? "text-white" : "text-gray-900"} mb-4`}>
+                <TypeAnimation
+                  sequence={[
+                    "Web Developer 💻", 2000,
+                    "Full Stack Engineer 🚀", 2000,
+                    "Mobile App Developer 📱", 2000,
+                    "React & Next.js Expert ⚛️", 2000,
+                    "Backend Developer (Node.js) 🛠️", 2000,
+                    "Firebase & MongoDB Specialist 🔥", 2000,
+                    "UI/UX Focused Developer 🎨", 2000,
+                    "Cross-Platform App Creator 🌐", 2000,
+                    "Performance Optimizer ⚡", 2000,
+                    "Reliable Freelance Partner 🤝", 2000,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                />
+              </div>
 
               <motion.p
                 initial={{ opacity: 0 }}

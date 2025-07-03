@@ -66,7 +66,7 @@ export default function BlogForm({ blog, onSave, onClose }) {
               value={formData.title}
               onChange={handleChange}
               required
-              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
               placeholder="Enter blog title"
             />
           </div>
@@ -79,7 +79,7 @@ export default function BlogForm({ blog, onSave, onClose }) {
               onChange={handleChange}
               required
               rows={3}
-              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors resize-none"
+              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors resize-none"
               placeholder="Brief description of your blog post"
             />
           </div>
@@ -92,7 +92,7 @@ export default function BlogForm({ blog, onSave, onClose }) {
               onChange={handleChange}
               required
               rows={12}
-              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors resize-none"
+              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors resize-none"
               placeholder="Write your blog content here..."
             />
           </div>
@@ -104,7 +104,7 @@ export default function BlogForm({ blog, onSave, onClose }) {
               name="tags"
               value={formData.tags}
               onChange={handleChange}
-              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
               placeholder="React, JavaScript, Web Development"
             />
           </div>
@@ -128,7 +128,7 @@ export default function BlogForm({ blog, onSave, onClose }) {
               type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-lg hover:bg-spotify-green/90 transition-colors"
+              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-2xl hover:bg-spotify-green/90 transition-colors"
             >
               <Save size={16} />
               <span>{blog ? "Update Blog Post" : "Add Blog Post"}</span>
@@ -136,7 +136,7 @@ export default function BlogForm({ blog, onSave, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 border border-gray-600 text-gray-300 hover:bg-gray-700/50 rounded-lg transition-colors"
+              className="px-6 py-3 border border-gray-600 text-gray-300 hover:bg-gray-700/50 rounded-2xl transition-colors"
             >
               Cancel
             </button>

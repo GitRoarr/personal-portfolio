@@ -187,7 +187,7 @@ export default function AdminPanel() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => router.push("/")}
-              className="p-3 bg-gray-900 text-spotify-green rounded-xl hover:bg-spotify-green hover:text-black transition-all duration-300 border border-gray-800 hover:border-spotify-green"
+              className="p-3 bg-gray-900 text-spotify-green rounded-2xl hover:bg-spotify-green hover:text-black transition-all duration-300 border border-gray-800 hover:border-spotify-green"
             >
               <ArrowLeft size={20} />
             </motion.button>
@@ -229,7 +229,7 @@ export default function AdminPanel() {
                 scale: 1.02,
                 boxShadow: "0 10px 30px rgba(29, 185, 84, 0.3)",
               }}
-              className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-spotify-green/50 transition-all duration-300"
+              className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-800 hover:border-spotify-green/50 transition-all duration-300"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -263,7 +263,7 @@ export default function AdminPanel() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800 mb-8"
+          className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-800 mb-8"
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-white">Resume Management</h2>
@@ -271,7 +271,7 @@ export default function AdminPanel() {
               whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(29, 185, 84, 0.4)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowResumeForm(true)}
-              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
+              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-2xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
             >
               <Upload size={16} />
               <span>UPDATE RESUME</span>
@@ -281,7 +281,7 @@ export default function AdminPanel() {
           {resumeData ? (
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-spotify-green/50 transition-all duration-300"
+              className="p-4 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-spotify-green/50 transition-all duration-300"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -297,7 +297,7 @@ export default function AdminPanel() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-spotify-green text-black font-medium rounded-lg hover:bg-spotify-green/90 transition-colors"
+                  className="px-4 py-2 bg-spotify-green text-black font-medium rounded-2xl hover:bg-spotify-green/90 transition-colors"
                 >
                   View Resume
                 </motion.a>
@@ -324,7 +324,7 @@ export default function AdminPanel() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800 mb-8"
+          className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-800 mb-8"
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-white">Projects ({projects.length})</h2>
@@ -335,7 +335,7 @@ export default function AdminPanel() {
                 setEditingProject(null)
                 setShowProjectForm(true)
               }}
-              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
+              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-2xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
             >
               <Plus size={16} />
               <span>ADD PROJECT</span>
@@ -364,13 +364,13 @@ export default function AdminPanel() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.01, x: 5 }}
-                  className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-spotify-green/50 transition-all duration-300"
+                  className="flex items-center justify-between p-4 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-spotify-green/50 transition-all duration-300"
                 >
                   <div className="flex items-center space-x-4">
                     <img
                       src={project.image || "/placeholder.svg?height=60&width=60"}
                       alt={project.title}
-                      className="w-12 h-12 object-cover rounded-lg border border-gray-600"
+                      className="w-12 h-12 object-cover rounded-2xl border border-gray-600"
                     />
                     <div>
                       <h3 className="font-medium text-white">{project.title}</h3>
@@ -390,7 +390,7 @@ export default function AdminPanel() {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="p-3 bg-spotify-green text-black rounded-xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
+                        className="p-3 bg-spotify-green text-black rounded-2xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
                       >
                         <Eye size={16} />
                       </motion.a>
@@ -402,7 +402,7 @@ export default function AdminPanel() {
                         setEditingProject(project)
                         setShowProjectForm(true)
                       }}
-                      className="p-3 bg-gray-700 text-spotify-green rounded-xl hover:bg-gray-600 transition-all duration-300 border border-gray-600 hover:border-spotify-green"
+                      className="p-3 bg-gray-700 text-spotify-green rounded-2xl hover:bg-gray-600 transition-all duration-300 border border-gray-600 hover:border-spotify-green"
                     >
                       <Edit size={16} />
                     </motion.button>
@@ -410,7 +410,7 @@ export default function AdminPanel() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => handleDeleteProject(project.id)}
-                      className="p-3 bg-red-900/50 text-red-400 rounded-xl hover:bg-red-900/70 transition-all duration-300 border border-red-800 hover:border-red-600"
+                      className="p-3 bg-red-900/50 text-red-400 rounded-2xl hover:bg-red-900/70 transition-all duration-300 border border-red-800 hover:border-red-600"
                     >
                       <Trash2 size={16} />
                     </motion.button>
@@ -426,7 +426,7 @@ export default function AdminPanel() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800"
+          className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-800"
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-white">Blog Posts ({blogs.length})</h2>
@@ -437,7 +437,7 @@ export default function AdminPanel() {
                 setEditingBlog(null)
                 setShowBlogForm(true)
               }}
-              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
+              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-2xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
             >
               <Plus size={16} />
               <span>ADD BLOG POST</span>
@@ -466,7 +466,7 @@ export default function AdminPanel() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.01, x: 5 }}
-                  className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-spotify-green/50 transition-all duration-300"
+                  className="flex items-center justify-between p-4 bg-gray-800/50 rounded-2xl border border-gray-700 hover:border-spotify-green/50 transition-all duration-300"
                 >
                   <div>
                     <h3 className="font-medium text-white">{blog.title}</h3>
@@ -484,7 +484,7 @@ export default function AdminPanel() {
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      className="p-3 bg-spotify-green text-black rounded-xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
+                      className="p-3 bg-spotify-green text-black rounded-2xl hover:bg-spotify-green/90 transition-all duration-300 shadow-lg"
                     >
                       <Eye size={16} />
                     </motion.button>
@@ -495,7 +495,7 @@ export default function AdminPanel() {
                         setEditingBlog(blog)
                         setShowBlogForm(true)
                       }}
-                      className="p-3 bg-gray-700 text-spotify-green rounded-xl hover:bg-gray-600 transition-all duration-300 border border-gray-600 hover:border-spotify-green"
+                      className="p-3 bg-gray-700 text-spotify-green rounded-2xl hover:bg-gray-600 transition-all duration-300 border border-gray-600 hover:border-spotify-green"
                     >
                       <Edit size={16} />
                     </motion.button>
@@ -503,7 +503,7 @@ export default function AdminPanel() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => handleDeleteBlog(blog.id)}
-                      className="p-3 bg-red-900/50 text-red-400 rounded-xl hover:bg-red-900/70 transition-all duration-300 border border-red-800 hover:border-red-600"
+                      className="p-3 bg-red-900/50 text-red-400 rounded-2xl hover:bg-red-900/70 transition-all duration-300 border border-red-800 hover:border-red-600"
                     >
                       <Trash2 size={16} />
                     </motion.button>
@@ -514,13 +514,12 @@ export default function AdminPanel() {
           </div>
         </motion.div>
 
-        {/* Analytics Section */}
         {analytics.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800 mt-8"
+            className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-800 mt-8"
           >
             <h2 className="text-xl font-bold text-white mb-6">Recent Analytics</h2>
             <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -552,7 +551,7 @@ export default function AdminPanel() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-gray-900 rounded-xl p-6 w-full max-w-md border border-gray-800"
+              className="bg-gray-900 rounded-2xl p-6 w-full max-w-md border border-gray-800"
             >
               <h3 className="text-xl font-bold text-white mb-4">Update Resume</h3>
               <form onSubmit={handleSaveResume} className="space-y-4">
@@ -562,7 +561,7 @@ export default function AdminPanel() {
                     type="url"
                     value={resumeFormData.downloadUrl}
                     onChange={(e) => setResumeFormData({ ...resumeFormData, downloadUrl: e.target.value })}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-spotify-green focus:border-spotify-green text-white placeholder-gray-400"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-2xl focus:ring-2 focus:ring-spotify-green focus:border-spotify-green text-white placeholder-gray-400"
                     placeholder="https://drive.google.com/file/d/..."
                     required
                   />
@@ -573,7 +572,7 @@ export default function AdminPanel() {
                     type="text"
                     value={resumeFormData.description}
                     onChange={(e) => setResumeFormData({ ...resumeFormData, description: e.target.value })}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-spotify-green focus:border-spotify-green text-white placeholder-gray-400"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-2xl focus:ring-2 focus:ring-spotify-green focus:border-spotify-green text-white placeholder-gray-400"
                     placeholder="Latest resume with updated projects and skills"
                     required
                   />
@@ -583,7 +582,7 @@ export default function AdminPanel() {
                     type="submit"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex-1 bg-spotify-green text-black font-bold py-2 px-4 rounded-lg hover:bg-spotify-green/90 transition-colors"
+                    className="flex-1 bg-spotify-green text-black font-bold py-2 px-4 rounded-2xl hover:bg-spotify-green/90 transition-colors"
                   >
                     Save Resume
                   </motion.button>
@@ -592,7 +591,7 @@ export default function AdminPanel() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setShowResumeForm(false)}
-                    className="flex-1 bg-gray-700 text-gray-300 py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors border border-gray-600"
+                    className="flex-1 bg-gray-700 text-gray-300 py-2 px-4 rounded-2xl hover:bg-gray-600 transition-colors border border-gray-600"
                   >
                     Cancel
                   </motion.button>

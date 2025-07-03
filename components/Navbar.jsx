@@ -56,7 +56,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? `${isDark ? "bg-gray-900/95" : "bg-white/95"} backdrop-blur-md shadow-lg border-b ${isDark ? "border-gray-800" : "border-gray-200"}`
+            ? `${isDark ? "bg-gray-900/95" : "bg-gray-900/95"} backdrop-blur-md shadow-lg border-b ${isDark ? "border-gray-800" : "border-gray-800"}`
             : "bg-transparent"
         }`}
       >
@@ -72,17 +72,15 @@ export default function Navbar() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="text-2xl"
-              >
-
-              </motion.div>
+              ></motion.div>
               <span className="text-2xl font-bold text-theme-gradient">Girma.dev</span>
               {isAdmin && (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className={`ml-2 px-2 py-1 ${isDark ? "bg-spotify-green/20 border-spotify-green/30" : "bg-primary-purple/20 border-primary-purple/30"} rounded-full border`}
+                  className={`ml-2 px-2 py-1 ${isDark ? "bg-spotify-green/20 border-spotify-green/30" : "bg-spotify-green/20 border-spotify-green/30"} rounded-full border`}
                 >
-                  <span className={`${isDark ? "text-spotify-green" : "text-primary-purple"} text-xs font-bold`}>
+                  <span className={`${isDark ? "text-spotify-green" : "text-spotify-green"} text-xs font-bold`}>
                     ADMIN
                   </span>
                 </motion.div>
@@ -90,7 +88,7 @@ export default function Navbar() {
             </motion.div>
 
             <div
-              className={`hidden md:flex items-center space-x-2 ${isDark ? "bg-gray-800/50" : "bg-gray-100/50"} backdrop-blur-sm rounded-full px-4 py-2 border ${isDark ? "border-gray-700" : "border-gray-300"}`}
+              className={`hidden md:flex items-center space-x-2 ${isDark ? "bg-gray-800/50" : "bg-gray-800/50"} backdrop-blur-sm rounded-full px-4 py-2 border ${isDark ? "border-gray-700" : "border-gray-700"}`}
             >
               {navItems.map((item, index) => (
                 <motion.a
@@ -103,8 +101,8 @@ export default function Navbar() {
                   whileTap={{ scale: 0.95 }}
                   className={`relative flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 group ${
                     activeSection === item.name.toLowerCase()
-                      ? `theme-primary ${isDark ? "bg-gray-700/50" : "bg-gray-200/50"}`
-                      : `${isDark ? "text-gray-300 hover:text-white" : "text-gray-700 hover:text-gray-900"}`
+                      ? `theme-primary ${isDark ? "bg-gray-700/50" : "bg-gray-700/50"}`
+                      : `${isDark ? "text-gray-300 hover:text-white" : "text-gray-300 hover:text-white"}`
                   }`}
                 >
                   {item.name === "About" ? (
@@ -128,7 +126,7 @@ export default function Navbar() {
                 onClick={toggleTheme}
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
-                className={`p-2 ${isDark ? "bg-gray-800/50" : "bg-gray-100/50"} backdrop-blur-sm rounded-full border ${isDark ? "border-gray-700" : "border-gray-300"} theme-primary transition-colors`}
+                className={`p-2 ${isDark ? "bg-gray-800/50" : "bg-gray-800/50"} backdrop-blur-sm rounded-full border ${isDark ? "border-gray-700" : "border-gray-700"} theme-primary transition-colors`}
               >
                 <motion.div
                   animate={{
@@ -151,7 +149,7 @@ export default function Navbar() {
                   href="/admin"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center space-x-2 px-4 py-2 bg-theme-primary text-white rounded-lg transition-colors"
+                  className="flex items-center space-x-2 px-4 py-2 bg-theme-primary text-white rounded-full transition-colors"
                 >
                   <img src="https://img.icons8.com/fluency/48/settings.png" alt="Settings" width={16} height={16} />
                   <span>Admin Panel</span>
@@ -164,7 +162,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(!isOpen)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`relative p-2 ${isDark ? "text-white hover:text-spotify-green" : "text-gray-900 hover:text-primary-purple"} transition-colors`}
+                  className={`relative p-2 ${isDark ? "text-white hover:text-spotify-green" : "text-white hover:text-spotify-green"} transition-colors`}
                 >
                   <AnimatePresence mode="wait">
                     {isOpen ? (
@@ -202,7 +200,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, height: "auto", y: 0 }}
                 exit={{ opacity: 0, height: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className={`md:hidden ${isDark ? "bg-gray-800/95" : "bg-white/95"} backdrop-blur-md rounded-2xl mb-4 border ${isDark ? "border-gray-700" : "border-gray-200"} overflow-hidden`}
+                className={`md:hidden ${isDark ? "bg-gray-800/95" : "bg-gray-800/95"} backdrop-blur-md rounded-2xl mb-4 border ${isDark ? "border-gray-700" : "border-gray-700"} overflow-hidden`}
               >
                 <div className="p-4 space-y-2">
                   {navItems.map((item, index) => (
@@ -216,14 +214,14 @@ export default function Navbar() {
                       whileHover={{ scale: 1.02, x: 10 }}
                       className={`flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 ${
                         activeSection === item.name.toLowerCase()
-                          ? `theme-primary ${isDark ? "bg-gray-700/50" : "bg-gray-100/50"}`
-                          : `${isDark ? "text-gray-300 hover:text-white hover:bg-gray-700/30" : "text-gray-700 hover:text-gray-900 hover:bg-gray-100/30"}`
+                          ? `theme-primary ${isDark ? "bg-gray-700/50" : "bg-gray-700/50"}`
+                          : `${isDark ? "text-gray-300 hover:text-white hover:bg-gray-700/30" : "text-gray-300 hover:text-white hover:bg-gray-700/30"}`
                       }`}
                     >
                       {item.name === "About" ? (
                         <span className="text-lg">{item.icon}</span>
                       ) : (
-                        <img src={item.icon} alt={item.name} width={16} height={16} />
+                        <img src={item.icon || "/placeholder.svg"} alt={item.name} width={16} height={16} />
                       )}
                       <span className="font-medium">{item.name}</span>
                     </motion.a>
@@ -242,7 +240,7 @@ export default function Navbar() {
         className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block"
       >
         <div
-          className={`${isDark ? "bg-gray-900/80" : "bg-white/80"} backdrop-blur-sm rounded-full p-2 border ${isDark ? "border-gray-700" : "border-gray-300"}`}
+          className={`${isDark ? "bg-gray-900/80" : "bg-gray-900/80"} backdrop-blur-sm rounded-full p-2 border ${isDark ? "border-gray-700" : "border-gray-700"}`}
         >
           {navItems.map((item, index) => (
             <motion.a
@@ -251,8 +249,8 @@ export default function Navbar() {
               whileHover={{ scale: 1.2 }}
               className={`block w-3 h-3 rounded-full mb-2 last:mb-0 transition-all duration-300 ${
                 activeSection === item.name.toLowerCase()
-                  ? `${isDark ? "bg-spotify-green shadow-lg shadow-spotify-green/50" : "bg-theme-gradient shadow-lg shadow-primary-purple/50"}`
-                  : `${isDark ? "bg-gray-600 hover:bg-gray-500" : "bg-gray-400 hover:bg-gray-500"}`
+                  ? `${isDark ? "bg-spotify-green shadow-lg shadow-spotify-green/50" : "bg-spotify-green shadow-lg shadow-spotify-green/50"}`
+                  : `${isDark ? "bg-gray-600 hover:bg-gray-500" : "bg-gray-600 hover:bg-gray-500"}`
               }`}
             >
               <span className="sr-only">{item.name}</span>

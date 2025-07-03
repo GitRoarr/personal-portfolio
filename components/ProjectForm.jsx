@@ -1,49 +1,75 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Save, X, ImageIcon } from "lucide-react";
-import { useTheme } from "@/contexts/ThemeContext";
-import ImagePicker from "./ImagePicker";
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { Save, X, Plus, Trash2 } from "lucide-react"
+import { useTheme } from "@/contexts/ThemeContext"
+import ImagePicker from "./ImagePicker"
 
 export default function ProjectForm({ project, onSave, onClose }) {
-  const { isDark } = useTheme();
-  const [showImagePicker, setShowImagePicker] = useState(false);
+  const { isDark } = useTheme()
+  const [showImagePicker, setShowImagePicker] = useState(false)
   const [formData, setFormData] = useState({
     title: project?.title || "",
     description: project?.description || "",
     image: project?.image || "",
+    images: project?.images || [],
     technologies: project?.technologies?.join(", ") || "",
     category: project?.category || "Full Stack",
     liveUrl: project?.liveUrl || "",
     githubUrl: project?.githubUrl || "",
     featured: project?.featured || false,
-  });
+  })
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const projectData = {
       ...formData,
       technologies: formData.technologies
         .split(",")
         .map((tech) => tech.trim())
         .filter((tech) => tech),
-    };
-    onSave(projectData);
-  };
+      // Ensure we have at least the main image in the images array
+      images: formData.images.length > 0 ? formData.images : formData.image ? [formData.image] : [],
+    }
+    onSave(projectData)
+  }
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+    }))
+  }
 
   const handleImageSelect = (imageUrl) => {
-    setFormData((prev) => ({ ...prev, image: imageUrl }));
-    setShowImagePicker(false);
-  };
+    if (formData.images.length === 0) {
+      // First image becomes both the main image and first in array
+      setFormData((prev) => ({
+        ...prev,
+        image: imageUrl,
+        images: [imageUrl],
+      }))
+    } else {
+      // Additional images just get added to the array
+      setFormData((prev) => ({
+        ...prev,
+        images: [...prev.images, imageUrl],
+      }))
+    }
+    setShowImagePicker(false)
+  }
+
+  const removeImage = (index) => {
+    const newImages = formData.images.filter((_, i) => i !== index)
+    setFormData((prev) => ({
+      ...prev,
+      images: newImages,
+      // Update main image if we removed the first one
+      image: newImages.length > 0 ? newImages[0] : "",
+    }))
+  }
 
   return (
     <motion.div
@@ -77,7 +103,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
                 value={formData.title}
                 onChange={handleChange}
                 required
-                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-full placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                 placeholder="Enter project title"
               />
             </div>
@@ -88,7 +114,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-1xl focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
               >
                 <option value="Full Stack">Full Stack</option>
                 <option value="Frontend">Frontend</option>
@@ -106,42 +132,57 @@ export default function ProjectForm({ project, onSave, onClose }) {
               onChange={handleChange}
               required
               rows={4}
-              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors resize-none"
+              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors resize-none"
               placeholder="Describe your project"
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-white font-medium">Project Image</label>
+              <label className="block text-white font-medium">Project Images</label>
               <motion.button
                 type="button"
                 onClick={() => setShowImagePicker(!showImagePicker)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 px-4 py-2 bg-spotify-green text-black font-medium rounded-lg hover:bg-spotify-green/90 transition-colors"
+                className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-black font-medium rounded-2xl hover:bg-green-600 transition-colors"
               >
-                <ImageIcon size={16} />
-                <span>Choose Image</span>
+                <Plus size={16} />
+                <span>Add Image</span>
               </motion.button>
             </div>
 
-            {formData.image && (
-              <div className="mb-4">
-                <img
-                  src={formData.image || "/placeholder.svg"}
-                  alt="Project preview"
-                  className="w-full h-32 object-cover rounded-lg border border-gray-700"
-                />
+            {formData.images.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                {formData.images.map((image, index) => (
+                  <div key={index} className="relative group">
+                    <img
+                      src={image || "/placeholder.svg"}
+                      alt={`Project image ${index + 1}`}
+                      className="w-full h-24 object-cover rounded-lg border border-gray-700"
+                    />
+                    <motion.button
+                      type="button"
+                      onClick={() => removeImage(index)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <Trash2 size={12} />
+                    </motion.button>
+                    {index === 0 && (
+                      <div className="absolute bottom-1 left-1 px-2 py-1 bg-green-500 text-black text-xs rounded">
+                        Main
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
             {showImagePicker && (
               <div className="mb-4 p-4 bg-gray-800 rounded-lg border border-gray-700">
-                <ImagePicker
-                  onImageSelect={handleImageSelect}
-                  currentImage={formData.image}
-                />
+                <ImagePicker onImageSelect={handleImageSelect} currentImage="" />
               </div>
             )}
           </div>
@@ -153,7 +194,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
               name="technologies"
               value={formData.technologies}
               onChange={handleChange}
-              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+              className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
               placeholder="React, Node.js, MongoDB"
             />
           </div>
@@ -166,7 +207,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
                 name="liveUrl"
                 value={formData.liveUrl}
                 onChange={handleChange}
-                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                 placeholder="https://project-demo.com"
               />
             </div>
@@ -178,7 +219,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
                 name="githubUrl"
                 value={formData.githubUrl}
                 onChange={handleChange}
-                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-lg placeholder-gray-400 focus:outline-none focus:border-spotify-green focus:ring-2 focus:ring-spotify-green/20 transition-colors"
+                className="w-full p-3 bg-gray-800 border border-gray-700 text-white rounded-2xl placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                 placeholder="https://github.com/username/repo"
               />
             </div>
@@ -191,7 +232,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
               id="featured"
               checked={formData.featured}
               onChange={handleChange}
-              className="w-4 h-4 text-spotify-green bg-gray-800 border-gray-600 rounded focus:ring-spotify-green focus:ring-2"
+              className="w-4 h-4 text-green-500 bg-gray-800 border-gray-600 rounded focus:ring-green-500 focus:ring-2"
             />
             <label htmlFor="featured" className="text-white font-medium">
               Featured Project
@@ -203,7 +244,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
               type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 px-6 py-3 bg-spotify-green text-black font-bold rounded-lg hover:bg-spotify-green/90 transition-colors"
+              className="flex items-center space-x-2 px-6 py-3 bg-green-500 text-black font-bold rounded-2xl hover:bg-green-600 transition-colors"
             >
               <Save size={16} />
               <span>{project ? "Update Project" : "Add Project"}</span>
@@ -211,7 +252,7 @@ export default function ProjectForm({ project, onSave, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 border border-gray-600 text-gray-300 hover:bg-gray-700/50 rounded-lg transition-colors"
+              className="px-6 py-3 border border-gray-600 text-gray-300 hover:bg-gray-700/50 rounded-2xl transition-colors"
             >
               Cancel
             </button>
@@ -219,5 +260,5 @@ export default function ProjectForm({ project, onSave, onClose }) {
         </form>
       </motion.div>
     </motion.div>
-  );
+  )
 }
