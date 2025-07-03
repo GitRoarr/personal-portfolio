@@ -1,5 +1,3 @@
-"use client"
-
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { useTheme } from "@/contexts/ThemeContext"
@@ -80,7 +78,6 @@ export default function BlogSection() {
     return text.substring(0, maxLength).trim() + "..."
   }
 
-  // Enhanced handleReadMore with Icons8 icons instead of emojis
   const handleReadMore = (blog) => {
     const blogWindow = window.open("", "_blank", "width=900,height=700,scrollbars=yes,resizable=yes")
     if (blogWindow) {
@@ -429,12 +426,10 @@ export default function BlogSection() {
           </style>
         </head>
         <body>
-          <!-- Scroll Progress Indicator -->
           <div class="scroll-indicator">
             <div class="scroll-progress" id="scrollProgress"></div>
           </div>
           
-          <!-- Close Button -->
           <button class="close-btn" onclick="window.close()">
             <img src="https://img.icons8.com/fluency/16/delete-sign.png" alt="Close" />
             <span>Close</span>
@@ -539,7 +534,9 @@ export default function BlogSection() {
             
             <div class="footer">
               <div class="author-info">
-                <div class="author-avatar">G</div>
+                <div class="author-avatar">
+                <img src="https://img.icons8.com/3d-fluency/100/writer-male.png" alt="Author" class="meta-icon" />
+</div>
                 <div>
                   <div style="font-weight: 600; color: #22c55e; margin-bottom: 5px;">
                     ${blog.author || "Girma Enkuchile"}
@@ -560,7 +557,7 @@ export default function BlogSection() {
           
           <!-- Image Modal -->
           <div id="imageModal" class="image-modal" onclick="closeImageModal()">
-            <span class="modal-close" onclick="closeImageModal()">&times;</span>
+            <span class="modal-close" onclick="closeImageModal()">×</span>
             <img class="modal-content" id="modalImage">
           </div>
           
@@ -674,7 +671,7 @@ export default function BlogSection() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-extrabold mb-6 text-theme-gradient">Latest Blog Posts</h2>
+            <h2 className={`text-6xl md:text-6xl font-bold mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>Latest Blog Posts</h2>
             <p className={`text-xl max-w-3xl mx-auto ${isDark ? "text-gray-300" : "text-gray-700"}`}>
               Thoughts, tutorials, and insights about web development and technology
             </p>
@@ -728,7 +725,7 @@ export default function BlogSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-extrabold mb-6 text-theme-gradient">Latest Blog Posts</h2>
+          <h2 className={`text-5xl font-extrabold mb-6 ${isDark ? "text-white" : "text-theme-gradient"}`}>Latest Blog Posts</h2>
           <p className={`text-xl max-w-3xl mx-auto ${isDark ? "text-gray-300" : "text-gray-700"}`}>
             Thoughts, tutorials, and insights about web development and technology
           </p>
