@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with **Next.js**, featuring dynamic content management, dark/light theme switching, and Firebase integration.
 
-Live Site: [https://your-deployment-url.com](https://your-deployment-url.com)
+Live Site: [https://portfolio-app-143b4.web.app/])
 
 ---
 
