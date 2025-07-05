@@ -79,7 +79,7 @@ export default function AboutSection() {
           <h2
             className={`text-6xl md:text-6xl font-bold mb-6 ${isDark ? "text-white" : "text-black"}`}
             style={
-              !isDark
+              isDark
                 ? {}
                 : {
                     background: "linear-gradient(135deg, #8b5cf6, #ec4899)",
