@@ -11,7 +11,6 @@ export default function Footer() {
   const controls = useAnimation()
   const currentYear = new Date().getFullYear()
 
-
   const [symbolPositions, setSymbolPositions] = useState([])
   const [dotPositions, setDotPositions] = useState([])
 
@@ -69,7 +68,7 @@ export default function Footer() {
     { name: "About", href: "#about", icon: "👨‍💻" },
     { name: "Skills", href: "#skills", icon: "https://img.icons8.com/fluency/90/admin-settings-male--v1.png" },
     { name: "Projects", href: "#projects", icon: "https://img.icons8.com/nolan/90/group-of-projects.png" },
-     {
+    {
       name: "Blog",
       href: "#blog",
       icon: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/blog-J1chjvAMuLcgsD1iA30IGZay078sxw.png",
@@ -133,7 +132,7 @@ export default function Footer() {
                 className="text-3xl"
               ></motion.div>
               <div>
-                <h3 className="text-3xl font-bold text-theme-gradient">Girma.dev</h3>
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-[#00C4CC] to-[#8E2DE2] bg-clip-text text-transparent">Girma.dev</h3>
                 <motion.p
                   className={`text-sm text-gray-400`}
                   animate={{ opacity: [0.7, 1, 0.7] }}
@@ -320,17 +319,16 @@ export default function Footer() {
           className={`border-t border-gray-800 pt-8`}
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-           <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
-   
-      <motion.span
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="text-lg"
-      ></motion.span>
-      <p className="text-gray-400 text-sm">
-        © 2022{currentYear > 2022 ? ` - ${currentYear}` : ""} Girma Enkuchile. All rights reserved.
-      </p>
-    </motion.div>
+            <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
+              <motion.span
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                className="text-lg"
+              ></motion.span>
+              <p className="text-gray-400 text-sm">
+                © 2022{currentYear > 2022 ? ` - ${currentYear}` : ""} Girma Enkuchile. All rights reserved.
+              </p>
+            </motion.div>
             <div className="w-full flex justify-center mb-4">
               <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.05 }}>
                 <span className={`text-sm text-gray-400`}>Made with</span>
@@ -344,21 +342,20 @@ export default function Footer() {
                   <span className="text-ellipsis">💖</span>
                 </motion.div>
                 <span className={`text-sm text-gray-400`}>and</span>
-               <motion.div
-  animate={{
-    y: [0, -10, 0, -5, 0],
-    rotate: [0, -15, 15, -10, 0],
-    scale: [1, 1.05, 1],
-  }}
-  transition={{
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
->
-  <span className="text-lg">☕</span>
-</motion.div>
-
+                <motion.div
+                  animate={{
+                    y: [0, -10, 0, -5, 0],
+                    rotate: [0, -15, 15, -10, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <span className="text-lg">☕</span>
+                </motion.div>
                 <span className={`text-sm text-gray-400`}>in Addis Ababa</span>
                 <motion.span
                   animate={{ scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] }}

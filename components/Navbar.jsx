@@ -62,7 +62,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? `${isDark ? "bg-gray-900/95" : "bg-gray-900/95"} backdrop-blur-md shadow-lg border-b ${isDark ? "border-gray-800" : "border-gray-800"}`
+            ? `${isDark ? "bg-gray-900/95" : "bg-gray-900/95"} backdrop-blur-md shadow-lg border ${isDark ? "border-gray-800" : "border-gray-800"}`
             : "bg-transparent"
         }`}
       >
@@ -79,7 +79,7 @@ export default function Navbar() {
                 transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="text-2xl"
               ></motion.div>
-              <span className="text-2xl font-bold text-theme-gradient">Girma.dev</span>
+              <span className="text-2xl font-bold bg-gradient-to-r from-[#00C4CC] to-[#8E2DE2] bg-clip-text text-transparent">Girma.dev</span>
               {isAdmin && (
                 <motion.div
                   initial={{ scale: 0 }}
@@ -369,7 +369,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.2 }}
               className={`block w-3 h-3 rounded-full mb-2 last:mb-0 transition-all duration-300 ${
                 activeSection === item.name.toLowerCase()
-                  ? `${isDark ? "bg-spotify-green shadow-lg shadow-spotify-green/50" : "bg-spotify-green shadow-lg shadow-spotify-green/50"}`
+                  ? `${isDark ? "bg-spotify-green shadow-lg shadow-spotify-green/50" : "bg-gradient-to-r from-[#00C4CC] to-[#8E2DE2] shadow-lg shadow-[#00C4CC]/50"}`
                   : `${isDark ? "bg-gray-600 hover:bg-gray-500" : "bg-gray-600 hover:bg-gray-500"}`
               }`}
             >
