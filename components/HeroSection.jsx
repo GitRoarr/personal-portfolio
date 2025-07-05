@@ -23,7 +23,7 @@ export default function HeroSection() {
   const themeColor = isDark ? "#22c55e" : "#8b5cf6"
   const themeGradient = isDark
     ? "from-green-400 via-green-500 to-emerald-400"
-    : "from-purple-400 via-purple-500 to-pink-500"
+    : "from-[#00C4CC] to-[#8E2DE2]"
 
   const letterVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -126,7 +126,7 @@ export default function HeroSection() {
                 className={`px-8 py-4 font-semibold rounded-full shadow-lg transition-all duration-300 focus:outline-none text-white ${
                   isDark
                     ? "bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-400"
-                    : "bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-400"
+                    : "bg-gradient-to-r from-[#00C4CC] to-[#8E2DE2] hover:bg-gradient-to-br focus:ring-4 focus:ring-[#00C4CC]/50"
                 }`}
               >
                 <a href="#projects" className="flex items-center space-x-2">
@@ -149,7 +149,7 @@ export default function HeroSection() {
                 className={`px-8 py-4 border-2 font-semibold rounded-full transition-all duration-300 focus:outline-none ${
                   isDark
                     ? "border-green-500 text-green-500 hover:bg-green-500 hover:text-white focus:ring-4 focus:ring-green-400"
-                    : "border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white focus:ring-4 focus:ring-purple-400"
+                    : "border-transparent bg-gradient-to-r from-[#00C4CC] to-[#8E2DE2] text-white hover:bg-gradient-to-br focus:ring-4 focus:ring-[#00C4CC]/50"
                 }`}
               >
                 <a href="#contact" className="flex items-center space-x-2">

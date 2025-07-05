@@ -77,16 +77,16 @@ export default function AboutSection() {
           className="text-center mb-12"
         >
           <h2
-            className={`text-6xl md:text-6xl font-bold mb-6 ${isDark ? "text-white" : "text-gray-900"}`}
+            className={`text-6xl md:text-6xl font-bold mb-6 ${isDark ? "text-white" : "text-black"}`}
             style={
               !isDark
-                ? {
+                ? {}
+                : {
                     background: "linear-gradient(135deg, #8b5cf6, #ec4899)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
                   }
-                : {}
             }
           >
             About Me
