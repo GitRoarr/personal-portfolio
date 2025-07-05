@@ -25,13 +25,45 @@ export default function HeroSection() {
     ? "from-green-400 via-green-500 to-emerald-400"
     : "from-[#00C4CC] to-[#8E2DE2]"
 
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  }
+const letterVariants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+    scale: 0.8,
+    rotate: -30,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 12,
+    },
+  },
+}
+const handwriteVariant = {
+  hidden: { opacity: 0, y: -20, scale: 0.8 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.25,
+      type: "spring",
+      stiffness: 500,
+      damping: 20,
+    },
+  }),
+}
+
+
 
   const name = "GIRMA"
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,37 +80,31 @@ export default function HeroSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Section */}
           <div className="text-center lg:text-left">
             <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="mb-8"
-            >
-              <h1 className={`text-6xl md:text-8xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
-                <span>Hi, I am </span>
-                <div className="inline-block">
-                  {name.split("").map((letter, index) => (
-                    <motion.span
-                      key={index}
-                      variants={letterVariants}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{ delay: index * 0.1 + 0.5 }}
-                      whileHover={{
-                        scale: 1.2,
-                        color: themeColor,
-                        textShadow: `0 0 20px ${themeColor}`,
-                      }}
-                      className={`inline-block bg-gradient-to-r bg-clip-text text-transparent cursor-pointer ${themeGradient}`}
-                    >
-                      {letter}
-                    </motion.span>
-                  ))}
-                </div>
-              </h1>
-            </motion.div>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.3 }}
+  className="mb-8"
+>
+  <h1 className={`text-6xl md:text-8xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-900"} font-mono`}>
+    <span>Hi, I am </span>
+    <div className="inline-block">
+      {"GIRMA".split("").map((letter, index) => (
+       <motion.span
+          key={index}
+          custom={index}
+          variants={handwriteVariant}
+          initial="hidden"
+          animate="visible"
+          className="inline-block bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent"
+        >
+          {letter}
+        </motion.span>
+      ))}
+    </div>
+  </h1>
+</motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
